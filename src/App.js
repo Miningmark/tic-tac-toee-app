@@ -1,22 +1,45 @@
 import "./App.css";
 import { useState } from "react";
 import Board from "./components/Board/Board";
+import darkModeIcon from "./assets/icons/nightlight_black.svg";
+import lightModeIcon from "./assets/icons/light_mode_white.svg";
+
+const initialBoard = Array(9).fill("");
+
+function calculateWinner() {
+  return null;
+}
 
 function App() {
-  const [game, setGame] = useState([
-    ["", "", ""],
-    ["", "", ""],
-    ["", "", ""],
-  ]);
-  const [darkMode, setDarkMode] = useState(true);
+  const [game, setGame] = useState(initialBoard);
+  const [xIsNext, setXIsNext] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   function handleSetGame(id) {
-    console.log(id);
-    //setGame();
+    setGame(game.map((element, index) => (index === id ? "x" : element)));
   }
+
+  function handleDarkMode() {
+    setDarkMode(!darkMode);
+  }
+
   return (
-    <div id="app" className="app">
-      <h1 className="text-center my-3">Welcome to the board!</h1>
+    <div
+      id="app"
+      className="app"
+      style={{
+        backgroundColor: darkMode ? "#121212" : "#ffffff",
+        color: darkMode ? "#ffffff" : "#000000",
+      }}
+    >
+      <h1>Tic-Tac-Toe</h1>
+      <div className="darkmode-switch" onClick={handleDarkMode}>
+        <img
+          className="darkmode-icon"
+          src={darkMode ? lightModeIcon : darkModeIcon}
+          alt={darkMode ? "Light mode" : "Dark mode"}
+        />
+      </div>
       <Board game={game} onSetGame={handleSetGame}></Board>
     </div>
   );

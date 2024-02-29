@@ -1,5 +1,5 @@
 import BoardField from "../BoardField/BoardField";
-import "./Boad.css";
+import "./Board.css";
 
 export default function Board({ game, onSetGame }) {
   return (

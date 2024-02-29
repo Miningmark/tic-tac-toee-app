@@ -4,3 +4,28 @@
   align-items: center;
   justify-content: center;
 }
+.checkboxDarkmode {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+.darkmode-switch {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+}
+
+.darkmode-icon {
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+  cursor: pointer;
+}
