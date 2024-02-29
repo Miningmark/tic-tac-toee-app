@@ -1,21 +1,23 @@
 import "./App.css";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Board from "./components/Board/Board";
 
 function App() {
   const [game, setGame] = useState([
-    [, ,],
-    [, ,],
-    [, ,],
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
   ]);
+  const [darkMode, setDarkMode] = useState(true);
 
-  function handleSetGame() {
+  function handleSetGame(id) {
+    console.log(id);
     //setGame();
   }
   return (
     <div id="app" className="app">
       <h1 className="text-center my-3">Welcome to the board!</h1>
-      <Board></Board>
+      <Board game={game} onSetGame={handleSetGame}></Board>
     </div>
   );
 }
