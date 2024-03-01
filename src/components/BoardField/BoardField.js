@@ -1,11 +1,10 @@
 import "./BoardField.css";
 
-export default function BoardField({ id, game, onSetGame }) {
-  const value = game[0][0];
-  console.log("faFfaFaffgG");
+export default function BoardField({ id, game, onSetGamePlayer }) {
   return (
-    <div className={`field ${value}`} onClick={() => onSetGame(id)}>
-      Ad
-    </div>
+    <div
+      className={`field ${game[id]}`}
+      onClick={() => onSetGamePlayer(id)}
+    ></div>
   );
 }
