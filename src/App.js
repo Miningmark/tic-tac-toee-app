@@ -35,7 +35,7 @@ function calculateWinner(squares) {
 function App() {
   const [game, setGame] = useState(initialBoard);
   const [darkMode, setDarkMode] = useState(false);
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState(null);
   const [player, setPlayer] = useState(true);
 
   function handleSetGamePlayer(id) {
@@ -43,7 +43,8 @@ function App() {
       const tempGame = prevGame.map((entry, index) =>
         index === Number(id) ? humanPlayer : entry
       );
-      handleSetWinner(tempGame);
+      setWinner(calculateWinner(tempGame));
+      console.log(winner);
       return tempGame;
     });
     setPlayer(false);
@@ -55,15 +56,11 @@ function App() {
       const tempGame = prevGame.map((entry, index) =>
         index === aiPos ? aiPlayer : entry
       );
-      handleSetWinner(tempGame);
+      setWinner(calculateWinner(tempGame));
+      console.log(winner);
       return tempGame;
     });
     setPlayer(true);
-  }
-
-  function handleSetWinner() {
-    setWinner(calculateWinner(game));
-    console.log(winner);
   }
 
   function handleDarkMode() {
@@ -75,10 +72,15 @@ function App() {
     aiTurn();
   }
 
+  function clearGame() {
+    setGame(Array(9).fill(""));
+    setWinner(null);
+    setPlayer(true);
+  }
+
   return (
     <div
       id="app"
-      className="app"
       style={{
         backgroundColor: darkMode ? "#121212" : "#ffffff",
         color: darkMode ? "#ffffff" : "#000000",
@@ -92,7 +94,19 @@ function App() {
           alt={darkMode ? "Light mode" : "Dark mode"}
         />
       </div>
-      <Board game={game} onSetGamePlayer={handleSetGamePlayer}></Board>
+      <div className="gameBoard">
+        <Board
+          className2={`${winner != null ? "hide" : ""}`}
+          game={game}
+          onSetGamePlayer={handleSetGamePlayer}
+        ></Board>
+        <div
+          className={`endScreen ${winner === null ? "hide" : ""}`}
+          onClick={() => clearGame()}
+        >
+          <p>{winner === humanPlayer ? "You are Win !" : "You are Lose!"}</p>
+        </div>
+      </div>
     </div>
   );
 }

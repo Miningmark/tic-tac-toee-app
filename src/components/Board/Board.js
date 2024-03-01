@@ -1,9 +1,9 @@
 import BoardField from "../BoardField/BoardField";
 import "./Board.css";
 
-export default function Board({ game, onSetGamePlayer }) {
+export default function Board({ game, onSetGamePlayer, className2 }) {
   return (
-    <div className={"board"}>
+    <div className={`board ${className2}`}>
       <BoardField
         id={"0"}
         game={game}
