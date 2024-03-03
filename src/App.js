@@ -70,7 +70,6 @@ function App() {
   console.log(game);
   if (!player) {
     aiTurn();
-    console.log("AI Turn");
   }
 
   function clearGame() {
