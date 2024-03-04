@@ -1,18 +1,31 @@
+.dark {
+  --background-color: #303030;
+  --text-color: #ffffff;
+  --board-color: #404040;
+  --icon-o-color: #ff6961;
+  --icon-x-color: #2b8c68;
+}
+.light {
+  --background-color: #ffffff;
+  --text-color: black;
+  --board-color: #ddd;
+  --icon-o-color: #ff6961;
+  --icon-x-color: #2b8c68;
+}
+
 #app {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 .checkboxDarkmode {
   position: fixed;
   right: 10px;
   top: 10px;
-}
-.dark-mode {
-  background-color: #121212;
-  color: #ffffff;
 }
 
 .darkmode-switch {
@@ -32,15 +45,15 @@
 }
 
 .endScreen {
-  background-color: rgba(211, 211, 211, 0.655);
+  background-color: rgba(211, 211, 211);
+  color: black;
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.test {
-  background-color: red;
+  flex-direction: column;
+  cursor: pointer;
 }
 .gameBoard {
   width: 350px;

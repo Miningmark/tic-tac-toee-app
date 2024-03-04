@@ -29,7 +29,13 @@ function calculateWinner(squares) {
     }
   }
 
-  return null;
+  for (let i = 0; i < 9; i++) {
+    if (squares[i] === "") {
+      return null;
+    }
+  }
+
+  return -1;
 }
 
 function App() {
@@ -79,13 +85,7 @@ function App() {
   }
 
   return (
-    <div
-      id="app"
-      style={{
-        backgroundColor: darkMode ? "#121212" : "#ffffff",
-        color: darkMode ? "#ffffff" : "#000000",
-      }}
-    >
+    <div id="app" className={darkMode ? "dark" : "light"}>
       <h1>Tic-Tac-Toe</h1>
       <div className="darkmode-switch" onClick={handleDarkMode}>
         <img
@@ -104,7 +104,10 @@ function App() {
           className={`endScreen ${winner === null ? "hide" : ""}`}
           onClick={() => clearGame()}
         >
-          <p>{winner === humanPlayer ? "You are Win !" : "You are Lose!"}</p>
+          {winner === humanPlayer && <p>You are Win!</p>}
+          {winner === aiPlayer && <p>You are Lose!</p>}
+          {winner === -1 && <p>Game drawn!</p>}
+          <p>New Game</p>
         </div>
       </div>
     </div>
