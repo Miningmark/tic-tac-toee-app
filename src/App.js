@@ -116,7 +116,7 @@ function App() {
           {winner === humanPlayer && (
             <>
               <p>You are Win!</p>
-              <img src={pokalIcon} alt="Pokal"></img>
+              <img src={pokalIcon} alt="Pokal" />
             </>
           )}
           {winner === aiPlayer && <p>You are Lose!</p>}

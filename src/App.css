@@ -4,6 +4,7 @@
   --board-color: #404040;
   --icon-o-color: #ff6961;
   --icon-x-color: #2b8c68;
+  --endScreen-color: #505050;
 }
 .light {
   --background-color: #ffffff;
@@ -11,6 +12,7 @@
   --board-color: #ddd;
   --icon-o-color: #ff6961;
   --icon-x-color: #2b8c68;
+  --endScreen-color: #ddd;
 }
 
 #app {
@@ -45,8 +47,8 @@
 }
 
 .endScreen {
-  background-color: rgba(211, 211, 211);
-  color: black;
+  background-color: var(--endScreen-color);
+  color: var(--text-color);
   height: 100%;
   width: 100%;
   display: flex;
