@@ -3,13 +3,15 @@ import { useState } from "react";
 import Board from "./components/Board/Board";
 import darkModeIcon from "./assets/icons/nightlight_black.svg";
 import lightModeIcon from "./assets/icons/light_mode_white.svg";
+import pokalIcon from "./assets/icons/emoji_events_black.svg";
 
 const initialBoard = Array(9).fill("");
 
-// Spieler
+//Player
 const humanPlayer = "x";
 const aiPlayer = "o";
 
+//Function, is passed the game array and returns either the winner or -1 if the board is full or null if not yet finished
 function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],
@@ -39,11 +41,16 @@ function calculateWinner(squares) {
 }
 
 function App() {
+  //GameBoard Array ["","","","","","","","",""]
   const [game, setGame] = useState(initialBoard);
+  //darkmode
   const [darkMode, setDarkMode] = useState(false);
+  //Save the winner or null  if there is no winner yet od -1 for drwan Game
   const [winner, setWinner] = useState(null);
+  //saves who is next in turn
   const [player, setPlayer] = useState(true);
 
+  //Handle function for Human Player turn
   function handleSetGamePlayer(id) {
     setGame((prevGame) => {
       const tempGame = prevGame.map((entry, index) =>
@@ -56,6 +63,7 @@ function App() {
     setPlayer(false);
   }
 
+  //function for AI Turn
   function aiTurn() {
     setGame((prevGame) => {
       const aiPos = getBestMove(prevGame, aiPlayer);
@@ -73,11 +81,12 @@ function App() {
     setDarkMode(!darkMode);
   }
 
-  console.log(game);
+  //calls AI turn when AI on turn
   if (!player) {
     aiTurn();
   }
 
+  //Reset Game for next round
   function clearGame() {
     setGame(Array(9).fill(""));
     setWinner(null);
@@ -104,7 +113,12 @@ function App() {
           className={`endScreen ${winner === null ? "hide" : ""}`}
           onClick={() => clearGame()}
         >
-          {winner === humanPlayer && <p>You are Win!</p>}
+          {winner === humanPlayer && (
+            <>
+              <p>You are Win!</p>
+              <img src={pokalIcon} alt="Pokal"></img>
+            </>
+          )}
           {winner === aiPlayer && <p>You are Lose!</p>}
           {winner === -1 && <p>Game drawn!</p>}
           <p>New Game</p>
@@ -115,6 +129,8 @@ function App() {
 }
 
 export default App;
+
+//Chat-GTP Code for AI Turn calculation
 
 // Minimax-Algorithmus für die KI
 function getBestMove(board, player) {
